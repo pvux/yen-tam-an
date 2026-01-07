@@ -7,7 +7,7 @@ const products = [
     name: "Yến Tinh Chế Hảo Hạng (100g)",
     price: "3.800.000₫",
     oldPrice: "4.200.000₫",
-    image: "https://images.unsplash.com/photo-1632314546590-b99b50e39527?auto=format&fit=crop&q=80&w=500",
+    image: "https://yentunhien.vn/wp-content/uploads/2022/04/to-yen-tinh-che-loai-thuong-hang-01-01.jpg",
     tag: "Bán chạy"
   },
   {
@@ -15,7 +15,7 @@ const products = [
     name: "Hồng Yến Nguyên Tổ (50g)",
     price: "2.500.000₫",
     oldPrice: null,
-    image: "https://images.unsplash.com/photo-1615485925763-867862f80eb6?auto=format&fit=crop&q=80&w=500",
+    image: "https://yensaotrangan.vn/wp-content/uploads/2021/12/z3080291047172_d05ba76aa9ddeac518da767d2f56c69d.jpg",
     tag: "Cao cấp"
   },
   {
@@ -23,7 +23,7 @@ const products = [
     name: "Yến Chưng Đường Phèn (Hũ 70ml)",
     price: "65.000₫",
     oldPrice: "80.000₫",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=500",
+    image: "https://yentot.com.vn/wp-content/uploads/2022/11/hu-yen-duong-phen-1.jpg",
     tag: "Tiện lợi"
   },
   {
@@ -31,7 +31,7 @@ const products = [
     name: "Set Quà Tặng Tâm An Luxury",
     price: "1.200.000₫",
     oldPrice: "1.500.000₫",
-    image: "https://images.unsplash.com/photo-1549488344-c7079585812d?auto=format&fit=crop&q=80&w=500",
+    image: "https://buuyen.vn/wp-content/uploads/2025/11/Hung-Thinh.jpg",
     tag: "Quà tặng"
   }
 ];
@@ -41,21 +41,21 @@ const articles = [
     title: "Cách chưng yến đường phèn táo đỏ hạt sen",
     excerpt: "Hướng dẫn chi tiết cách chưng yến sào với táo đỏ và hạt sen, món ăn bổ dưỡng cho cả gia đình.",
     date: "12/05/2024",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=500"
+    image: "https://duocthaomailands.vn/wp-content/uploads/2024/06/chung-yen-voi-dong-trung-ha-thao-va-ky-tu.jpg"
   },
   {
     id: 2,
     title: "5 Công dụng tuyệt vời của yến sào với trẻ nhỏ",
     excerpt: "Yến sào giúp tăng cường sức đề kháng, phát triển trí não và chiều cao cho bé yêu của bạn.",
     date: "10/05/2024",
-    image: "https://images.unsplash.com/photo-1615485925763-867862f80eb6?auto=format&fit=crop&q=80&w=500"
+    image: "https://cdn.tgdd.vn/2021/10/CookDish/cach-lam-yen-chung-tao-do-duong-phen-ngot-thanh-gia-nhiet-cuc-avt-1200x676-1.jpg"
   },
   {
     id: 3,
     title: "Phân biệt yến thật và yến giả đơn giản nhất",
     excerpt: "Những mẹo nhỏ giúp bạn dễ dàng nhận biết yến sào nguyên chất và tránh mua phải hàng kém chất lượng.",
     date: "08/05/2024",
-    image: "https://images.unsplash.com/photo-1632314546590-b99b50e39527?auto=format&fit=crop&q=80&w=500"
+    image: "https://lamnest.com/upload/images/to-yen-tho.png"
   }
 ];
 const Home = ({ addToCart }) => {
