@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/yen-tam-an/static/css/main.e6c13ad2.css",
+    "main.js": "/yen-tam-an/static/js/main.e89d3bb0.js",
+    "static/js/453.6963adaa.chunk.js": "/yen-tam-an/static/js/453.6963adaa.chunk.js",
+    "index.html": "/yen-tam-an/index.html",
+    "main.e6c13ad2.css.map": "/yen-tam-an/static/css/main.e6c13ad2.css.map",
+    "main.e89d3bb0.js.map": "/yen-tam-an/static/js/main.e89d3bb0.js.map",
+    "453.6963adaa.chunk.js.map": "/yen-tam-an/static/js/453.6963adaa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.e89d3bb0.js"
+  ]
+}
