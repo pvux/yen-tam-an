@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-xs">
-        © 2024 Yến Sào Tâm An. Thiết kế lấy cảm hứng từ Dola Bakery.
+        © 2026 Yến Sào Tâm An.
       </div>
     </footer>
   );

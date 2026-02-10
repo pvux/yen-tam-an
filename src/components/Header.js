@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ShoppingCart, Search, Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import logoTamAn from '../assets/tam-an-logo-2.png'; // đường dẫn tùy vị trí bạn để ảnh
 
 const Header = ({ cartCount }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,26 +21,44 @@ const Header = ({ cartCount }) => {
             <Menu className="w-6 h-6 text-[#10B981]" />
           </button>
 
-          {/* Logo */}
-          <Link to="/" className="text-2xl font-serif font-bold text-[#10B981] tracking-wide">
-            TÂM AN <span className="text-yellow-600 text-sm block md:inline font-sans font-normal">Nest & Health</span>
+          {/* Logo (bên trái) */}
+          <Link to="/" className="flex items-center space-x-2">
+            <img
+              src={logoTamAn}
+              alt="Tâm An Nest & Health"
+              className="h-24 md:h-24 w-auto object-contain"
+            />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-wider">
-            <Link to="/" className="hover:text-[#10B981] transition-colors">Trang chủ</Link>
-            <a href="#" className="hover:text-[#10B981] transition-colors">Về Tâm An</a>
-            <a href="#" className="hover:text-[#10B981] transition-colors">Sản phẩm</a>
-            <a href="#" className="hover:text-[#10B981] transition-colors">Kiến thức Yến</a>
-            <a href="#" className="hover:text-[#10B981] transition-colors">Liên hệ</a>
-          </nav>
+          {/* Desktop Navigation (giữa) */}
+          <div className="hidden md:flex flex-1 justify-center">
+            <nav className="flex items-center space-x-8 font-medium text-sm uppercase tracking-wider">
+              <Link to="/" className="hover:text-[#10B981] transition-colors">
+                Trang chủ
+              </Link>
+              <a href="#" className="hover:text-[#10B981] transition-colors">
+                Về Tâm An
+              </a>
+              <a href="#" className="hover:text-[#10B981] transition-colors">
+                Sản phẩm
+              </a>
+              <a href="#" className="hover:text-[#10B981] transition-colors">
+                Kiến thức Yến
+              </a>
+              <a href="#" className="hover:text-[#10B981] transition-colors">
+                Liên hệ
+              </a>
+            </nav>
+          </div>
 
           {/* Icons */}
           <div className="flex items-center space-x-4">
             <Search className="w-5 h-5 cursor-pointer hover:text-[#10B981]" />
             <Link to="/cart" className="relative">
               <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-[#10B981]" />
-              <span className="absolute -top-2 -right-2 bg-yellow-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">{cartCount}</span>
+              <span className="absolute -top-2 -right-2 bg-yellow-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                {cartCount}
+              </span>
             </Link>
           </div>
         </div>
