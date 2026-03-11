@@ -4,9 +4,12 @@ import { X } from 'lucide-react';
 const Cart = ({ cart, updateQuantity, removeFromCart, handleCheckout }) => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
-  const parsePrice = (priceString) => {
-    if (!priceString) return 0;
-    return parseInt(priceString.replace(/[^0-9]/g, ''));
+  const parsePrice = (priceInput) => {
+    if (priceInput === null || priceInput === undefined) return 0;
+    if (typeof priceInput === 'number') return priceInput;
+    // Remove all non-numeric characters except for the decimal point if it exists as a separator in database
+    // But since our API returns "10000.00", we should probably just parseFloat
+    return parseFloat(priceInput.toString().replace(/[^0-9.]/g, ''));
   };
 
   const cartTotal = cart.reduce((total, item) => {
@@ -32,10 +35,16 @@ const Cart = ({ cart, updateQuantity, removeFromCart, handleCheckout }) => {
               {cart.map(item => (
                 <div key={item.id} className="flex flex-col md:flex-row items-center justify-between p-4 border rounded-2xl shadow-sm">
                   <div className="flex items-center space-x-4 mb-4 md:mb-0">
-                    <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-lg" />
+                    <img
+                      src={item.image ? (item.image.startsWith('http') ? item.image : `http://127.0.0.1:8000/storage/${item.image}`) : 'https://via.placeholder.com/300'}
+                      alt={item.name}
+                      className="w-20 h-20 object-cover rounded-lg"
+                    />
                     <div>
                       <h3 className="font-medium text-gray-800">{item.name}</h3>
-                      <p className="text-sm text-[#D97706] font-bold">{item.price}</p>
+                      <p className="text-sm text-[#D97706] font-bold">
+                        {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(parsePrice(item.price))}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -61,8 +70,8 @@ const Cart = ({ cart, updateQuantity, removeFromCart, handleCheckout }) => {
                   {new Intl.NumberFormat('vi-VN').format(cartTotal)}₫
                 </span>
               </div>
-              <button 
-                onClick={() => setShowPaymentModal(true)} 
+              <button
+                onClick={() => setShowPaymentModal(true)}
                 className="bg-[#10B981] text-white px-8 py-3 rounded-full font-medium hover:bg-[#059669] transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
                 Tiến hành Thanh toán
@@ -73,21 +82,21 @@ const Cart = ({ cart, updateQuantity, removeFromCart, handleCheckout }) => {
             {showPaymentModal && (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
                 <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-fade-in">
-                  <button 
+                  <button
                     onClick={() => setShowPaymentModal(false)}
                     className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 bg-gray-100 rounded-full p-1 transition"
                   >
                     <X size={20} />
                   </button>
-                  
+
                   <div className="p-8 text-center">
                     <h3 className="text-2xl font-bold text-[#064E3B] mb-2">Thanh Toán QR</h3>
                     <p className="text-gray-500 text-sm mb-6">Quét mã VietQR để thanh toán đơn hàng</p>
-                    
+
                     <div className="bg-white p-2 rounded-xl border-2 border-[#10B981] inline-block mb-6 shadow-sm">
                       <img src={qrUrl} alt="VietQR Payment" className="w-64 h-64 object-contain" />
                     </div>
-                    
+
                     <div className="space-y-3 bg-gray-50 p-4 rounded-xl text-sm mb-6">
                       <div className="flex justify-between">
                         <span className="text-gray-500">Tổng thanh toán:</span>
@@ -99,7 +108,7 @@ const Cart = ({ cart, updateQuantity, removeFromCart, handleCheckout }) => {
                       </div>
                     </div>
 
-                    <button 
+                    <button
                       onClick={() => { setShowPaymentModal(false); handleCheckout(); }}
                       className="w-full bg-[#10B981] text-white py-3 rounded-xl font-bold hover:bg-[#059669] transition shadow-md"
                     >

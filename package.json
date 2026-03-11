@@ -1,8 +1,9 @@
 {
-  "homepage": "https://pvux.github.io/yen-tam-an",
+  "homepage": "/",
   "name": "yensao-taman",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://127.0.0.1:8000",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

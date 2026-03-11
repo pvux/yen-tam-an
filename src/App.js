@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Cart from './components/Cart';
+import ContactMenu from './components/ContactMenu';
+import FacebookChat from './components/FacebookChat';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -56,19 +58,21 @@ const App = () => {
         <Header cartCount={cartCount} />
         <Routes>
           <Route path="/" element={<Home addToCart={addToCart} />} />
-          <Route 
-            path="/cart" 
+          <Route
+            path="/cart"
             element={
-              <Cart 
-                cart={cart} 
-                updateQuantity={updateQuantity} 
-                removeFromCart={removeFromCart} 
-                handleCheckout={handleCheckout} 
+              <Cart
+                cart={cart}
+                updateQuantity={updateQuantity}
+                removeFromCart={removeFromCart}
+                handleCheckout={handleCheckout}
               />
-            } 
+            }
           />
         </Routes>
         <Footer />
+        <FacebookChat />
+        <ContactMenu />
       </div>
     </Router>
   );

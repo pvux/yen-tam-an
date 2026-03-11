@@ -19,20 +19,20 @@ const Footer = () => {
         <div>
           <h4 className="font-bold text-lg mb-4">Liên kết nhanh</h4>
           <ul className="space-y-2 text-gray-300 text-sm">
-            <li><a href="#" className="hover:text-[#10B981]">Về chúng tôi</a></li>
-            <li><a href="#" className="hover:text-[#10B981]">Cửa hàng</a></li>
-            <li><a href="#" className="hover:text-[#10B981]">Chính sách đổi trả</a></li>
-            <li><a href="#" className="hover:text-[#10B981]">Tin tức & Sự kiện</a></li>
+            <li><a href="/" className="hover:text-[#10B981]">Về chúng tôi</a></li>
+            <li><a href="/" className="hover:text-[#10B981]">Cửa hàng</a></li>
+            <li><a href="/" className="hover:text-[#10B981]">Chính sách đổi trả</a></li>
+            <li><a href="/" className="hover:text-[#10B981]">Tin tức & Sự kiện</a></li>
           </ul>
         </div>
 
         <div>
           <h4 className="font-bold text-lg mb-4">Sản phẩm</h4>
           <ul className="space-y-2 text-gray-300 text-sm">
-            <li><a href="#" className="hover:text-[#10B981]">Yến Tinh Chế</a></li>
-            <li><a href="#" className="hover:text-[#10B981]">Yến Thô</a></li>
-            <li><a href="#" className="hover:text-[#10B981]">Yến Chưng Sẵn</a></li>
-            <li><a href="#" className="hover:text-[#10B981]">Quà Biếu Tặng</a></li>
+            <li><a href="/" className="hover:text-[#10B981]">Yến Tinh Chế</a></li>
+            <li><a href="/" className="hover:text-[#10B981]">Yến Thô</a></li>
+            <li><a href="/" className="hover:text-[#10B981]">Yến Chưng Sẵn</a></li>
+            <li><a href="/" className="hover:text-[#10B981]">Quà Biếu Tặng</a></li>
           </ul>
         </div>
 
@@ -40,10 +40,10 @@ const Footer = () => {
           <h4 className="font-bold text-lg mb-4">Liên hệ</h4>
           <ul className="space-y-2 text-gray-300 text-sm">
             <li className="flex items-start gap-2">
-              <span className="font-bold">Đ/c:</span> 123 Đường Nguyễn Huệ, Q.1, TP.HCM
+              <span className="font-bold">Đ/c:</span> 180 Vũ Hữu, Thanh Xuân, Hà Nội.
             </li>
             <li className="flex items-start gap-2">
-              <span className="font-bold">ĐT:</span> 0912.345.678
+              <span className="font-bold">ĐT:</span> 0888.201.881
             </li>
             <li className="flex items-start gap-2">
               <span className="font-bold">Email:</span> cskh@yensaotaman.com
@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-xs">
-        © 2026 Yến Sào Tâm An.
+        © 2026 Yến Tâm An.
       </div>
     </footer>
   );

@@ -1,40 +1,8 @@
 import React from 'react';
 import { ShoppingCart, Phone, Star, Heart, Calendar, ArrowRight } from 'lucide-react';
 
-const products = [
-  {
-    id: 1,
-    name: "Yến Tinh Chế Hảo Hạng (100g)",
-    price: "3.800.000₫",
-    oldPrice: "4.200.000₫",
-    image: "https://yentunhien.vn/wp-content/uploads/2022/04/to-yen-tinh-che-loai-thuong-hang-01-01.jpg",
-    tag: "Bán chạy"
-  },
-  {
-    id: 2,
-    name: "Hồng Yến Nguyên Tổ (50g)",
-    price: "2.500.000₫",
-    oldPrice: null,
-    image: "https://yensaotrangan.vn/wp-content/uploads/2021/12/z3080291047172_d05ba76aa9ddeac518da767d2f56c69d.jpg",
-    tag: "Cao cấp"
-  },
-  {
-    id: 3,
-    name: "Yến Chưng Đường Phèn (Hũ 70ml)",
-    price: "65.000₫",
-    oldPrice: "80.000₫",
-    image: "https://yentot.com.vn/wp-content/uploads/2022/11/hu-yen-duong-phen-1.jpg",
-    tag: "Tiện lợi"
-  },
-  {
-    id: 4,
-    name: "Set Quà Tặng Tâm An Luxury",
-    price: "1.200.000₫",
-    oldPrice: "1.500.000₫",
-    image: "https://buuyen.vn/wp-content/uploads/2025/11/Hung-Thinh.jpg",
-    tag: "Quà tặng"
-  }
-];
+// Product data is now fetched from API
+
 const articles = [
   {
     id: 1,
@@ -59,15 +27,39 @@ const articles = [
   }
 ];
 const Home = ({ addToCart }) => {
+  const [products, setProducts] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    fetch('/api/products')
+      .then(response => response.json())
+      .then(data => {
+        // API returns paginated logic: { data: [...], ... }
+        if (data && Array.isArray(data.data)) {
+          setProducts(data.data);
+        } else if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error('Invalid products data format:', data);
+          setProducts([]);
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <>
-      {/* --- HERO BANNER --- */}
+      {/* ... existing hero section ... */}
       <section className="relative h-[500px] bg-[#E6FFFA] flex items-center">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 space-y-6 z-10">
             <h3 className="text-[#10B981] font-bold uppercase tracking-widest text-sm">Tinh hoa đất trời</h3>
             <h1 className="text-4xl md:text-6xl font-serif font-bold text-gray-800 leading-tight">
-              Thân An <br/> <span className="text-[#10B981]">Vạn Sự An</span>
+              Thân An <br /> <span className="text-[#10B981]">Vạn Sự An</span>
             </h1>
             <p className="text-gray-500 max-w-md">
               Yến sào Tâm An cam kết 100% nguyên chất, không chất bảo quản, giữ trọn vẹn dinh dưỡng cho gia đình bạn.
@@ -77,18 +69,18 @@ const Home = ({ addToCart }) => {
             </button>
           </div>
           <div className="md:w-1/2 mt-8 md:mt-0 relative">
-             <div className="w-full h-64 md:h-96 bg-gradient-to-tr from-[#A7F3D0] to-[#E0F2F1] rounded-tl-[100px] rounded-br-[100px] shadow-inner flex items-center justify-center overflow-hidden">
-                <img 
-                  src="https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2025/3/11/to-yen-17416707983001574625142.png" 
-                  alt="Yến sào Tâm An" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-             </div>
+            <div className="w-full h-64 md:h-96 bg-gradient-to-tr from-[#A7F3D0] to-[#E0F2F1] rounded-tl-[100px] rounded-br-[100px] shadow-inner flex items-center justify-center overflow-hidden">
+              <img
+                src="https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2025/3/11/to-yen-17416707983001574625142.png"
+                alt="Yến sào Tâm An"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* --- USP SECTION --- */}
+      {/* ... existing USP section ... */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="p-6 border border-[#ECFDF5] rounded-xl hover:shadow-lg transition">
@@ -114,7 +106,8 @@ const Home = ({ addToCart }) => {
           </div>
         </div>
       </section>
-{/* --- NEWS & ARTICLES --- */}
+
+      {/* ... existing News section ... */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -126,9 +119,9 @@ const Home = ({ addToCart }) => {
             {articles.map((article) => (
               <div key={article.id} className="group cursor-pointer">
                 <div className="overflow-hidden rounded-xl mb-4">
-                  <img 
-                    src={article.image} 
-                    alt={article.title} 
+                  <img
+                    src={article.image}
+                    alt={article.title}
                     className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
                   />
                 </div>
@@ -150,6 +143,7 @@ const Home = ({ addToCart }) => {
           </div>
         </div>
       </section>
+
       {/* --- PRODUCTS --- */}
       <section className="py-16 bg-[#F0FDF4]">
         <div className="container mx-auto px-4">
@@ -158,23 +152,33 @@ const Home = ({ addToCart }) => {
             <h2 className="text-3xl font-serif font-bold text-gray-800">Lựa Chọn Của Khách Hàng</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="relative h-64 overflow-hidden bg-gray-100">
-                  <span className="absolute top-3 left-3 bg-[#10B981] text-white text-xs px-2 py-1 rounded font-medium z-10">{product.tag}</span>
-                  <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                     <button onClick={() => addToCart(product)} className="bg-white text-[#10B981] p-3 rounded-full hover:bg-[#10B981] hover:text-white transition"><ShoppingCart className="w-5 h-5"/></button>
+          {loading ? (
+            <div className="text-center text-gray-500">Đang tải sản phẩm...</div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {Array.isArray(products) && products.map((product) => (
+                <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+                  <div className="relative h-64 overflow-hidden bg-gray-100">
+                    <span className="absolute top-3 left-3 bg-[#10B981] text-white text-xs px-2 py-1 rounded font-medium z-10">{product.tag || 'Mới'}</span>
+                    <img
+                      src={product.image ? (product.image.startsWith('http') ? product.image : `http://127.0.0.1:8000/storage/${product.image}`) : 'https://via.placeholder.com/300'}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <button onClick={() => addToCart(product)} className="bg-white text-[#10B981] p-3 rounded-full hover:bg-[#10B981] hover:text-white transition"><ShoppingCart className="w-5 h-5" /></button>
+                    </div>
+                  </div>
+                  <div className="p-4 text-center">
+                    <h3 className="font-medium text-gray-800 text-lg mb-2 truncate px-2">{product.name}</h3>
+                    <div className="text-[#D97706] font-bold text-lg">
+                      {product.price ? new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price) : 'Liên hệ'}
+                    </div>
                   </div>
                 </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-medium text-gray-800 text-lg mb-2 truncate px-2">{product.name}</h3>
-                  <div className="text-[#D97706] font-bold text-lg">{product.price}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
